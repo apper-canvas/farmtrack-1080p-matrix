@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from "react";
-import StatCard from "@/components/molecules/StatCard";
-import WeatherCard from "@/components/molecules/WeatherCard";
-import TaskCard from "@/components/molecules/TaskCard";
-import Card from "@/components/atoms/Card";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import ApperIcon from "@/components/ApperIcon";
+import React, { useEffect, useState } from "react";
+import { format, isBefore, isToday } from "date-fns";
+import { toast } from "react-toastify";
+import incomeService from "@/services/api/incomeService";
+import taskService from "@/services/api/taskService";
+import weatherService from "@/services/api/weatherService";
 import farmService from "@/services/api/farmService";
 import cropService from "@/services/api/cropService";
-import taskService from "@/services/api/taskService";
 import expenseService from "@/services/api/expenseService";
-import incomeService from "@/services/api/incomeService";
-import weatherService from "@/services/api/weatherService";
-import { format, isToday, isBefore } from "date-fns";
-import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import Card from "@/components/atoms/Card";
+import Tasks from "@/components/pages/Tasks";
+import Weather from "@/components/pages/Weather";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
+import TaskCard from "@/components/molecules/TaskCard";
+import WeatherCard from "@/components/molecules/WeatherCard";
+import StatCard from "@/components/molecules/StatCard";
+
 
 const Dashboard = () => {
   const [farms, setFarms] = useState([]);
