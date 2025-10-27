@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import { cn } from "@/utils/cn";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/layouts/Root";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
