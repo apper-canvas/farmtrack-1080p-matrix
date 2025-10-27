@@ -206,9 +206,9 @@ const Dashboard = () => {
               {upcomingTasks.map(task => (
                 <div key={task.Id} className="flex items-center justify-between p-3 bg-gray-50 rounded-button">
                   <div className="flex-1">
-                    <p className="font-medium text-gray-900">{task.title}</p>
+<p className="font-medium text-gray-900">{task.title}</p>
                     <p className="text-sm text-gray-600">
-                      Due: {format(new Date(task.dueDate), 'MMM d, yyyy')}
+                      Due: {task.dueDate ? format(new Date(task.dueDate), 'MMM d, yyyy') : 'No due date'}
                     </p>
                   </div>
                   <div className="text-right">
