@@ -40,7 +40,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+<nav className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -57,6 +57,25 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
+            <button
+              onClick={() => {
+                if (window.confirm("Are you sure you want to logout?")) {
+                  import("@/layouts/Root").then(({ useAuth }) => {
+                    const { logout } = useAuth();
+                    logout();
+                  }).catch(() => {
+                    window.location.href = "/login";
+                  });
+                }
+              }}
+              className={cn(
+                "flex items-center px-4 py-2 rounded-button text-sm font-medium transition-all duration-200",
+                "hover:bg-red-50 hover:text-red-600 text-gray-700"
+              )}
+            >
+              <ApperIcon name="LogOut" size={18} className="mr-2" />
+              Logout
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -74,7 +93,7 @@ const Header = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="lg:hidden py-4 border-t border-gray-200"
-          >
+>
             <nav className="space-y-1">
               {navItems.map((item) => (
                 <Link
@@ -93,6 +112,26 @@ const Header = () => {
                   {item.label}
                 </Link>
               ))}
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  if (window.confirm("Are you sure you want to logout?")) {
+                    import("@/layouts/Root").then(({ useAuth }) => {
+                      const { logout } = useAuth();
+                      logout();
+                    }).catch(() => {
+                      window.location.href = "/login";
+                    });
+                  }
+                }}
+                className={cn(
+                  "flex items-center w-full px-4 py-3 rounded-button text-sm font-medium transition-all duration-200",
+                  "hover:bg-red-50 hover:text-red-600 text-gray-700"
+                )}
+              >
+                <ApperIcon name="LogOut" size={18} className="mr-3" />
+                Logout
+              </button>
             </nav>
           </motion.div>
         )}
