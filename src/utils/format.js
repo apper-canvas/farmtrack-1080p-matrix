@@ -1,4 +1,4 @@
-import { format, isValid, parseISO } from 'date-fns';
+import { format, isValid, parseISO, differenceInDays } from 'date-fns';
 
 /**
  * Validates if a value is a valid date
@@ -90,7 +90,6 @@ export function safeDifferenceInDays(date, baseDate = new Date()) {
     
     if (!isValid(parsedDate) || !isValid(parsedBaseDate)) return null;
     
-    const { differenceInDays } = await import('date-fns');
     return differenceInDays(parsedDate, parsedBaseDate);
   } catch (error) {
     console.error('Error calculating date difference:', error);
