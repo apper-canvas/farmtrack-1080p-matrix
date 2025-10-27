@@ -48,15 +48,15 @@ const Farms = () => {
     loadData();
   }, []);
 
-  const openModal = (farm = null) => {
+const openModal = (farm = null) => {
     if (farm) {
       setEditingFarm(farm);
       setFormData({
-        name: farm.name,
-        location: farm.location,
-        totalArea: farm.totalArea.toString(),
-        unit: farm.unit,
-        notes: farm.notes || ""
+        name: farm.name_c,
+        location: farm.location_c,
+        totalArea: farm.total_area_c.toString(),
+        unit: farm.unit_c,
+        notes: farm.notes_c || ""
       });
     } else {
       setEditingFarm(null);
@@ -172,12 +172,12 @@ const Farms = () => {
         {farms.map((farm) => (
           <Card key={farm.Id} className="p-6 hover" onClick={() => openModal(farm)}>
             <div className="space-y-4">
-              <div className="flex items-start justify-between">
+<div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900">{farm.name}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{farm.name_c}</h3>
                   <p className="text-sm text-gray-600 flex items-center mt-1">
                     <ApperIcon name="MapPin" size={14} className="mr-1" />
-                    {farm.location}
+                    {farm.location_c}
                   </p>
                 </div>
                 <div className="flex space-x-1">
@@ -206,10 +206,10 @@ const Farms = () => {
                 </div>
               </div>
 
-              <div className="space-y-2">
+<div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Total Area</span>
-                  <span className="font-medium">{farm.totalArea} {farm.unit}</span>
+                  <span className="font-medium">{farm.total_area_c} {farm.unit_c}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Total Crops</span>
@@ -221,16 +221,16 @@ const Farms = () => {
                 </div>
               </div>
 
-              {farm.notes && (
+{farm.notes_c && (
                 <div className="pt-3 border-t border-gray-100">
-                  <p className="text-sm text-gray-600">{farm.notes}</p>
+                  <p className="text-sm text-gray-600">{farm.notes_c}</p>
                 </div>
               )}
 
               <div className="pt-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-500">
-                    Created: {new Date(farm.createdAt).toLocaleDateString()}
+                    Created: {new Date(farm.created_at_c).toLocaleDateString()}
                   </span>
                   <ApperIcon name="ChevronRight" size={16} className="text-gray-400" />
                 </div>
