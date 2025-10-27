@@ -216,6 +216,4 @@ const incomeService = {
     }
   }
 };
-
-export default incomeService;
 export default incomeService;

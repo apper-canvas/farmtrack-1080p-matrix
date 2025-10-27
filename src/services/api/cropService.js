@@ -259,5 +259,3 @@ const cropService = {
 };
 
 export default cropService;
-
-export default cropService;

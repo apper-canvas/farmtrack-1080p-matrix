@@ -3,10 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import { cn } from "@/utils/cn";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { logout } = useAuth();
 
   const navItems = [
     { path: "", label: "Dashboard", icon: "LayoutDashboard" },
@@ -58,14 +60,14 @@ const Header = () => {
               </Link>
             ))}
             <button
-              onClick={() => {
+onClick={() => {
                 if (window.confirm("Are you sure you want to logout?")) {
-                  import("@/layouts/Root").then(({ useAuth }) => {
-                    const { logout } = useAuth();
+                  try {
                     logout();
-                  }).catch(() => {
+                  } catch (error) {
+                    console.error("Logout error:", error);
                     window.location.href = "/login";
-                  });
+                  }
                 }
               }}
               className={cn(
@@ -113,15 +115,15 @@ const Header = () => {
                 </Link>
               ))}
               <button
-                onClick={() => {
+onClick={() => {
                   setIsMobileMenuOpen(false);
                   if (window.confirm("Are you sure you want to logout?")) {
-                    import("@/layouts/Root").then(({ useAuth }) => {
-                      const { logout } = useAuth();
+                    try {
                       logout();
-                    }).catch(() => {
+                    } catch (error) {
+                      console.error("Logout error:", error);
                       window.location.href = "/login";
-                    });
+                    }
                   }
                 }}
                 className={cn(
